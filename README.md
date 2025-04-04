@@ -1,7 +1,7 @@
 # Config /etc/hosts to listen coordinator and workers for all instances
 sudo nano /etc/hosts
-x.x.x.x trino-coordinator
-x.x.x.x trino-coordinator
+- x.x.x.x trino-coordinator
+- x.x.x.x trino-worker
 
 # Create keystore and truststore on coordinator instance and copy that keys to other worker instances
 sudo apt install openjdk-21-jre-headless
