@@ -3,7 +3,7 @@ sudo nano /etc/hosts
 x.x.x.x trino-coordinator
 x.x.x.x trino-coordinator
 
-# create keystore and truststore on coordinator instance and copy that keys to other worker instances
+# Create keystore and truststore on coordinator instance and copy that keys to other worker instances
 sudo apt install openjdk-21-jre-headless
 
 ## Generate new self-signed certificate with appropriate SANs
@@ -16,4 +16,4 @@ keytool -genkeypair -alias trino -keyalg RSA -keysize 2048 \
 keytool -exportcert -alias trino -keystore keystore.jks -file trino.crt -storepass hanhattri
 keytool -importcert -alias trino -keystore truststore.jks -file trino.crt -storepass hanhattri -noprompt
 
-## then copy that keys to trino/etc
+# Then copy that keys to trino/etc
