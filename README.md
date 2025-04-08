@@ -17,3 +17,4 @@ keytool -exportcert -alias trino -keystore keystore.jks -file trino.crt -storepa
 keytool -importcert -alias trino -keystore truststore.jks -file trino.crt -storepass hanhattri -noprompt
 
 # Then copy that keys to trino/etc
+# Note that firewall open on port 9043
