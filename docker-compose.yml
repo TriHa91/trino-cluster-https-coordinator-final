@@ -4,17 +4,18 @@ services:
     hostname: trino-coordinator
     ports:
       #- "9080:8080"
-      - "9043:8443"
+      - "9043:9043"
     image: "trinodb/trino:472"
     container_name: trino_coordinator
     networks:
      - network_test
+    # network_mode: "host"
     restart: unless-stopped
     volumes:
       - ./etc:/etc/trino
     extra_hosts:
         - "host.docker.internal:host-gateway"
-        - "trino-worker:10.128.15.229"
+        - "trino-worker:10.128.0.12"
 networks:
   network_test:
     name: network_test
