@@ -5,7 +5,7 @@ services:
     ports:
       #- "9080:8080"
       - "9043:9043"
-    image: "trinodb/trino:472"
+    image: "trinodb/trino:475"
     container_name: trino_coordinator
     networks:
      - network_test
@@ -15,7 +15,7 @@ services:
       - ./etc:/etc/trino
     extra_hosts:
         - "host.docker.internal:host-gateway"
-        - "trino-worker:10.128.0.12"
+        - "trino-worker:10.96.20.68"
 networks:
   network_test:
     name: network_test
