@@ -1,0 +1,135 @@
+{
+    "catalogs": [
+        {
+            "group": "admin",
+            "catalog": ".*",
+            "allow": "all"
+        },
+        {
+            "group": "dev",
+            "catalog": "(dmbcn|ocbdm|ocbdm96)",
+            "allow": "read-only"
+        }
+    ],
+    "schemas": [
+        {
+            "group": "admin",
+            "schema": ".*",
+            "owner": true
+        }
+    ],
+    "tables": [
+        {
+            "group": "admin",
+            "table": ".*",
+            "privileges": ["SELECT", "INSERT", "DELETE", "UPDATE", "OWNERSHIP","GRANT_SELECT"]
+        },
+        {
+            "group": "dev",
+            "catalog": "dmbcn",
+            "schema":".*",
+            "table": ".*",
+            "privileges": ["SELECT"]
+        },
+        {   "group": "dev",
+            "catalog": "memory",
+            "schema":".*",
+            "table": ".*",
+            "privileges": ["SELECT", "INSERT", "DELETE", "UPDATE","OWNERSHIP","GRANT_SELECT"]
+        },
+        {
+            "group": "dev",
+            "catalog": "(ocbdm|ocbdm96)",
+            "schema":"(tcimport|cicxmldata)",
+            "table": ".*",
+            "privileges": ["SELECT"]
+        },
+        {
+            "group": "dev",
+            "catalog": "sql_.*",
+            "schema":"^(rr|sch_).*",
+            "table": "^(?!cif_info_bk$).*",
+            "privileges": ["SELECT", "INSERT", "DELETE", "UPDATE","OWNERSHIP","GRANT_SELECT"]
+        },
+
+        {
+            "group": "user",
+            "catalog": "sql_.*",
+            "schema":"^(rr|sch_).*",
+            "table": "^(?!cif_info_bk$).*",
+            "privileges": ["SELECT", "INSERT", "DELETE", "UPDATE","OWNERSHIP","GRANT_SELECT"],
+            "columns" : [
+                {
+                    "name": "full_name",
+                    "mask": "'XXX-XX-XX'",
+                    "mask_environment": {
+                        "user": "system_user"
+                    }
+                },
+                {
+                    "name": "identity_no",
+                    "mask": "'XXX-XX-XX'",
+                    "mask_environment": {
+                        "user": "system_user"
+                    }
+                }
+                ,
+                {
+                    "name": "phone",
+                    "mask": "'XXX-XX-XX'",
+                    "mask_environment": {
+                        "user": "system_user"
+                    }
+                }
+            ]
+        },
+        {   "user": ".*",
+            "table": ".*",
+            "catalog": "system",
+            "schema":"(jdbc|metadata)",
+            "privileges": ["SELECT"]
+        }
+    ],
+    "functions":[
+        {
+            "group": "admin",
+            "schema": ".*",
+            "function": ".*",
+            "privileges": [
+                "EXECUTE", "GRANT_EXECUTE", "OWNERSHIP"
+            ]
+        },
+        {
+            "group": "dev",
+            "catalog": "sql_.*",
+            "function": ".*",
+            "privileges": [
+            "EXECUTE", "GRANT_EXECUTE", "OWNERSHIP"
+            ]
+        },
+        {
+            "group": "dev",
+            "catalog": "(ocbdm|ocbdm96)",
+            "schema": "system",
+            "function": ".*",
+            "privileges": [
+            "EXECUTE", "GRANT_EXECUTE"
+            ]
+        }
+    ],
+    "procedures": [
+        {
+            "group": "admin",
+            "privileges": [
+            "EXECUTE", "GRANT_EXECUTE"
+            ]
+        },
+        {
+            "group": "dev",
+            "catalog": "sql_.*",
+            "privileges": [
+            "EXECUTE", "GRANT_EXECUTE"
+            ]
+        }
+    ]
+}
